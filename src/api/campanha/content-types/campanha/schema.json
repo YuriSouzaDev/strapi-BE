@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "campanhas",
+  "info": {
+    "singularName": "campanha",
+    "pluralName": "campanhas",
+    "displayName": "campanhas"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "numero_campanha": {
+      "type": "uid",
+      "required": true,
+      "private": true,
+      "minLength": 1
+    },
+    "imagem_campanha": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "descricao_campanha": {
+      "type": "text",
+      "required": true
+    },
+    "titulo_campanha": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "link_campanha": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

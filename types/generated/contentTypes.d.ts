@@ -362,6 +362,49 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiCampanhaCampanha extends Schema.CollectionType {
+  collectionName: 'campanhas';
+  info: {
+    singularName: 'campanha';
+    pluralName: 'campanhas';
+    displayName: 'campanhas';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    numero_campanha: Attribute.UID &
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    imagem_campanha: Attribute.Media & Attribute.Required;
+    descricao_campanha: Attribute.Text & Attribute.Required;
+    titulo_campanha: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    link_campanha: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::campanha.campanha',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::campanha.campanha',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -791,6 +834,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::campanha.campanha': ApiCampanhaCampanha;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
